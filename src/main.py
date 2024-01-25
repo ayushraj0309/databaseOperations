@@ -25,10 +25,10 @@ def install_postgresql():
     try:
         if os_name == 'linux':
             subprocess.run(['sudo', 'apt', 'install', 'postgresql'], check=True)
-            subprocess.run(['brew', 'services', 'start', 'postgresql'])
+            subprocess.run(['systemctl', 'start', 'postgresql.service'])
         elif os_name == 'darwin':
             subprocess.run(['brew', 'install', 'postgresql'], check=True)
-            subprocess.run(['systemctl', 'start', 'postgresql.service'])
+            subprocess.run(['brew', 'services', 'start', 'postgresql'])
         else:
             print(f"Unsupported operating system: {os_name}. Please install PostgreSQL manually.")
             sys.exit(1)
@@ -50,11 +50,12 @@ def load_database_script(script_path):
         raise
 
 def setupDB():
-    if not is_postgresql_installed():
-        print("PostgreSQL is not installed. Attempting to install...")
-        install_postgresql()
-    else:
-        print("PostgreSQL is already installed.")
+    install_postgresql()
+    # if not is_postgresql_installed():
+    #     print("PostgreSQL is not installed. Attempting to install...")
+    #     install_postgresql()
+    # else:
+    #     print("PostgreSQL is already installed.")
 
 def is_db_created(db_name):
     try:
