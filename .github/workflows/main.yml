@@ -21,8 +21,8 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Show Path
-      run: pwd
+    - name: Show Files
+      run: ls
 
     - name: Install dependencies
       run: pip install -r ../../requirements.txt
