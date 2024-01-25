@@ -1,6 +1,9 @@
 import pytest
 import psycopg2
 
+from src.main import init_db
+
+
 @pytest.fixture(scope='session')
 def postgresql_url(request):
     config = request.config
@@ -21,6 +24,7 @@ def database_connection(postgresql_url):
     connection.close()
 
 def test_postgresql_connection(database_connection):
+    init_db('operations_db', '../database.sql')
     cursor = database_connection.cursor()
     cursor.execute("SELECT 1")
     result = cursor.fetchone()
