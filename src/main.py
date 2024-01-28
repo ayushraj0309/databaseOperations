@@ -25,10 +25,10 @@ def install_postgresql():
     try:
         if os_name == 'linux':
             subprocess.run(['sudo', 'apt', 'install', 'postgresql'], check=True)
-            subprocess.run(['systemctl', 'start', 'postgresql.service'])
+            subprocess.run(['systemctl', 'start', 'postgresql.service'], check=True)
         elif os_name == 'darwin':
             subprocess.run(['brew', 'install', 'postgresql'], check=True)
-            subprocess.run(['brew', 'services', 'start', 'postgresql'])
+            subprocess.run(['brew', 'services', 'start', 'postgresql'], check=True)
         else:
             print(f"Unsupported operating system: {os_name}. Please install PostgreSQL manually.")
             sys.exit(1)
