@@ -7,7 +7,7 @@ from src.main import init_db
 
 class TestDataBaseOperations(TestCase):
     def setUp(self):
-        init_db('operations_db', '../database.sql')
+        init_db('operations_db', 'database.sql')
         connection_args = {
             "host" : DB_HOST,
             "port" : DB_PORT,
